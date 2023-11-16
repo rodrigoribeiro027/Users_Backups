@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const usuariosDelete = new Schema({ 
-    nome:String,
+    idDelete:String,
     dataEntrada:Date
 })
 

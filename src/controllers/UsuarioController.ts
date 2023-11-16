@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import UsuarioService from '../services/UsuarioService';
+import UsuariosDeleteService from '../services/UsuariosDeleteService';
 
 class UsuarioController {
 
@@ -37,6 +38,7 @@ class UsuarioController {
         try {
             const usuarioId = req.params.id;
             const deletedUsuario = await UsuarioService.deleteUsuario(usuarioId);
+            await UsuariosDeleteService.insertDeleteRegister(usuarioId);
             res.status(200).json(deletedUsuario);
         } catch (error) {
             res.status(500).json({ error: error.message });
