@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import UsuarioService from '../services/UsuarioService';
 import UsuariosDeleteService from '../services/UsuariosDeleteService';
 
+
 class UsuarioController {
 
     public async createUsuario(req: Request, res: Response) {
@@ -38,6 +39,9 @@ class UsuarioController {
         try {
             const usuarioId = req.params.id;
             const deletedUsuario = await UsuarioService.deleteUsuario(usuarioId);
+            if(!deletedUsuario){
+                throw `Não encontrado ${usuarioId}.`
+            }
             await UsuariosDeleteService.insertDeleteRegister(usuarioId);
             res.status(200).json(deletedUsuario);
         } catch (error) {
