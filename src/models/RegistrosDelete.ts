@@ -13,12 +13,12 @@ const usuariosDelete = new Schema({
     dataEntrada:Date
 })
 let conectionDeleteRegisters;
-let UsuariosDelete;
+let RegistrosDelete;
 
 const secondConn =async() => {
     try{
         conectionDeleteRegisters = await mongoose.createConnection(URI + "/RegistersDelete");
-        UsuariosDelete = conectionDeleteRegisters.model("registers", usuariosDelete);
+        RegistrosDelete = conectionDeleteRegisters.model("registers", usuariosDelete);
     }catch(error){
         console.log(error);
     }
@@ -27,4 +27,4 @@ secondConn()
 
 
 
-export { UsuariosDelete };
+export { RegistrosDelete };

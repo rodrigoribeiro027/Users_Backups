@@ -1,12 +1,12 @@
 import { Usuarios } from "../models/Usuarios";
-import { UsuariosDelete} from "../models/UsuariosDelete";
+import { RegistrosDelete} from "../models/RegistrosDelete";
 
 
-class UsuariosDeleteSercice{
+class RegistrosDeleteService{
     public async insertDeleteRegister(id: string){
         try{
-            const new_register = new UsuariosDelete({dataEntrada: new Date(), idDelete: id});
-            const register = await UsuariosDelete.create(new_register);
+            const new_register = new RegistrosDelete({dataEntrada: new Date(), idDelete: id});
+            const register = await RegistrosDelete.create(new_register);
             return register;
         }catch(error){
             console.log(error);
@@ -15,7 +15,7 @@ class UsuariosDeleteSercice{
 
     public async findAllDeleteRegisters(){
         try{
-            const registers = await UsuariosDelete.find();
+            const registers = await RegistrosDelete.find();
             return registers;
         }catch(error){
             console.log(error);
@@ -40,4 +40,4 @@ class UsuariosDeleteSercice{
 
 
 
-export default new UsuariosDeleteSercice();
+export default new RegistrosDeleteService();

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import UsuarioService from '../services/UsuarioService';
-import UsuariosDeleteService from '../services/UsuariosDeleteService';
+import UsuariosDeleteService from '../services/RegistrosDeleteService';
 
 
 class UsuarioController {
