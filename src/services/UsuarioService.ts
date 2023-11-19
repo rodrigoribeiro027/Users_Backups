@@ -5,7 +5,7 @@ import { Usuarios } from "../models/Usuarios";
 class UsuarioService {
     public async createUsuario(usuario) {
         try {
-            if (!usuario.nome || !usuario.email || !usuario.telefone || !usuario.endereco || !usuario.dataNascimento || !usuario.TermosUso) {
+            if (!usuario.nome || !usuario.email || !usuario.telefone || !usuario.endereco || !usuario.dataNascimento || !usuario.TermosUso || !usuario.senha) {
                 throw new Error("Todos os campos são obrigatórios.");
             }
             usuario.dataCadastro = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -48,6 +48,12 @@ class UsuarioService {
             }
             if (usuarioData.TermosUso) {
                 usuario.TermosUso = usuarioData.TermosUso;
+            }
+            if (usuarioData.senha) {
+                usuario.senha = usuarioData.senha;
+            }
+            if (usuarioData.type) {
+                usuario.type = usuarioData.type;
             }
             const updatedUsuario = await usuario.save();
             return updatedUsuario;
