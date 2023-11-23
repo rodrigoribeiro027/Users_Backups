@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { UserType } from '../utils/enum';
+import Termo from "./Termo";
 
 
 const { Schema } = mongoose;
@@ -11,9 +11,9 @@ const usuarios = new Schema({
     telefone:String,
     endereco:String,
     dataNascimento:Date,
-    TermosUso:Boolean,
+    TermosUso:Termo,
     dataCadastro:String,
-    type: Number
+    type: Number,
 })
 
 const Usuarios = mongoose.model("usuarios", usuarios);

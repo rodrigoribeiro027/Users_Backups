@@ -1,14 +1,31 @@
 import moment from 'moment';
 import { Usuarios } from "../models/Usuarios";
+import { VERSION } from '../termoVersion';
 
 
 class UsuarioService {
-    public async createUsuario(usuario) {
+    public async createUsuario(nome, email, senha, telefone, endereco, dataNascimento, termo, type) {
         try {
-            if (!usuario.nome || !usuario.email || !usuario.telefone || !usuario.endereco || !usuario.dataNascimento || !usuario.TermosUso || !usuario.senha) {
+
+            if (!nome || !email || !telefone || !endereco || !dataNascimento || !senha || !type) {
                 throw new Error("Todos os campos são obrigatórios.");
             }
-            usuario.dataCadastro = moment().format('YYYY-MM-DD HH:mm:ss');
+
+            const usuario = {
+                dataCadastro: moment().format('YYYY-MM-DD HH:mm:ss'),
+                TermosUso: {
+                    versao: VERSION,
+                    aceito: termo,
+                },
+                nome: nome,
+                senha: senha,
+                email: email,
+                endereco: endereco,
+                telefone: telefone,
+                dataNascimento: dataNascimento,
+                type: type
+            }
+
             const response = await Usuarios.create(usuario);
             return response;
         } catch (error) {

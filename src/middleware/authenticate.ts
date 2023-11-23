@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import * as dotenv from "dotenv";
 import { Request, Response, NextFunction } from 'express';
 import { UserType } from '../utils/enum';
+import { VERSION } from '../termoVersion';
 
 
 dotenv.config();
@@ -57,3 +58,16 @@ export const verifyAdmAndFuncionario = (req: Request, res: Response, next: NextF
         return res.status(401).json({ error:error.message || UNAUTHORIZED_ERROR_MESSAGE });
     }
 };
+
+export const verifyTermoVersion = (req: Request, res: Response, next: NextFunction) => {
+    try{
+        const user = res.locals.jwtPayload;
+        if (user.TermosUso.versao === VERSION){
+            return next();
+        }else{
+            throw "O termos de uso foram atualizados, por favor verifique novamente.";
+        }
+    }catch(error){
+        return res.status(401).json({ error:error });
+    }
+}

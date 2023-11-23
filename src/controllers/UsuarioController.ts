@@ -7,8 +7,9 @@ class UsuarioController {
 
     public async createUsuario(req: Request, res: Response) {
         try {
-            const novoUsuario = req.body;
-            const usuario = await UsuarioService.createUsuario(novoUsuario);
+            const { nome, email, senha, telefone, endereco, dataNascimento, termo, type } = req.body;
+            const usuario = await UsuarioService.createUsuario(nome, email, senha, telefone, endereco, dataNascimento, termo, type);
+            console.log(usuario)
             res.status(201).json(usuario);
         } catch (error) {
             res.status(500).json({ error: error.message });
