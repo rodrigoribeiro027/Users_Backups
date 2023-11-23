@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import UsuarioService from '../services/UsuarioService';
 import UsuariosDeleteService from '../services/RegistrosDeleteService';
+import LogController from './LogController';
 
 
 class UsuarioController {
@@ -9,6 +10,8 @@ class UsuarioController {
         try {
             const novoUsuario = req.body;
             const usuario = await UsuarioService.createUsuario(novoUsuario);
+            const logText = `Usuario foi Criado id: ${JSON.stringify(usuario._id)}`;
+            await LogController.writeToTxt(logText);
             res.status(201).json(usuario);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -29,6 +32,8 @@ class UsuarioController {
             const usuarioId = req.params.id;
             const usuarioData = req.body;
             const updatedProduto = await UsuarioService.updateUsuario(usuarioId, usuarioData);
+            const logText = `Usuario Atualizado id: ${JSON.stringify(updatedProduto._id)}`;
+            await LogController.writeToTxt(logText);
             res.status(200).json(updatedProduto);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -39,10 +44,12 @@ class UsuarioController {
         try {
             const usuarioId = req.params.id;
             const deletedUsuario = await UsuarioService.deleteUsuario(usuarioId);
-            if(!deletedUsuario){
+            if (!deletedUsuario) {
                 throw `Não encontrado ${usuarioId}.`
             }
             await UsuariosDeleteService.insertDeleteRegister(usuarioId);
+            const logText = `Usuario deletado: ${JSON.stringify(deletedUsuario._id)}`;
+            await LogController.writeToTxt(logText);
             res.status(200).json(deletedUsuario);
         } catch (error) {
             res.status(500).json({ error: error.message });
