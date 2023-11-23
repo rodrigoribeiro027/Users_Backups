@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ProdutoService from '../services/ProdutoService';
+import LogController from './LogController';
 
 class ProdutoCotroller {
 
@@ -7,6 +8,8 @@ class ProdutoCotroller {
         try {
             const novoProduto = req.body;
             const produto = await ProdutoService.createProduto(novoProduto);
+            const logText = `Novo produto criado: ${JSON.stringify(novoProduto)}`;
+            await LogController.writeToTxt(logText);
             res.status(201).json(produto);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -27,6 +30,8 @@ class ProdutoCotroller {
             const produtoId = req.params.id;
             const produtoData = req.body;
             const updatedProduto = await ProdutoService.updateProduto(produtoId, produtoData);
+            const logText = `Produto foi atualizado: ${JSON.stringify(updatedProduto)}`;
+            await LogController.writeToTxt(logText);
             res.status(200).json(updatedProduto);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -37,6 +42,8 @@ class ProdutoCotroller {
         try {
             const produtoId = req.params.id;
             const deletedProduto = await ProdutoService.deleteProduto(produtoId);
+            const logText = `Produto foi deletado: ${JSON.stringify(deletedProduto)}`;
+            await LogController.writeToTxt(logText);
             res.status(200).json(deletedProduto);
         } catch (error) {
             res.status(500).json({ error: error.message });
