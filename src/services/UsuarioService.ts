@@ -1,22 +1,32 @@
 import moment from 'moment';
 import { Usuarios } from "../models/Usuarios";
-import { VERSION } from '../termoVersion';
+import TermoService from './TermoService';
 
 
 class UsuarioService {
-    public async createUsuario(nome, email, senha, telefone, endereco, dataNascimento, termo, type) {
+    public async createUsuario(nome, email, senha, telefone, endereco, dataNascimento, termos, type) {
         try {
 
             if (!nome || !email || !telefone || !endereco || !dataNascimento || !senha || !type) {
                 throw new Error("Todos os campos são obrigatórios.");
             }
 
+            let termosDoUsuario = []
+            for(let i = 0; i < termos.length; i++){
+                let id= termos[i].id
+                let ret = await TermoService.findByID(id);
+                const obj = {
+                    termo_id: ret._id,
+                    aceito: termos[i].aceito,
+                    data_de_aceito: termos[i].aceito ? new Date().toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"}) : null,
+                    data_atualizacao: null
+                };
+                termosDoUsuario.push(obj);
+            }
+
             const usuario = {
                 dataCadastro: moment().format('YYYY-MM-DD HH:mm:ss'),
-                TermosUso: {
-                    versao: VERSION,
-                    aceito: termo,
-                },
+                TermosUso: termosDoUsuario,
                 nome: nome,
                 senha: senha,
                 email: email,
@@ -35,7 +45,10 @@ class UsuarioService {
     
     public async findAllUsuarios() {
         try {
-            const usuarios = await Usuarios.find();
+            const usuarios = await Usuarios.find().populate({
+                path: 'TermosUso.termo_id',
+                options: { strictPopulate: false }
+            });
             return usuarios;
         } catch (error) {
             throw error;

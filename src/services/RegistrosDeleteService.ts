@@ -30,9 +30,8 @@ class RegistrosDeleteService{
                 await Usuarios.findByIdAndDelete(element.idDelete);
             }
             return ""
-            console.log(registers);
         }catch(error){
-            console.log(error);
+            throw error;
         }
     }
 }

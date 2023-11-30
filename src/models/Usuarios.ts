@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import Termo from "./Termo";
+import Termo from "./Opcao";
+import termoUsuario from './TermoUsuario';
 
 
 const { Schema } = mongoose;
@@ -11,7 +12,7 @@ const usuarios = new Schema({
     telefone:String,
     endereco:String,
     dataNascimento:Date,
-    TermosUso:Termo,
+    TermosUso:[termoUsuario],
     dataCadastro:String,
     type: Number,
 })

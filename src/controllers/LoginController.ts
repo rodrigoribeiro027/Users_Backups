@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { Usuarios } from '../models/Usuarios';
 import { generateToken } from '../middleware/authenticate';
 import LogController from './LogController';
+import { VERSION } from '../termoVersion';
 
 
 class LoginController{
@@ -10,8 +11,11 @@ class LoginController{
             const { email, senha } = req.body;
             const usuario = await Usuarios.findOne({email: email, senha:senha}, "-__v");
             if(!usuario){
-                return res.status(404).json(`usuario não encontrado, email ou senha incorreto....`);
+                return res.status(404).json(`usuario não encontrado, email ou senha incorreto...`);
             }
+            // if(usuario.TermosUso.versao != VERSION){
+            //     return res.status(401).json(`O termos de uso foram atualizados, por favor verifique novamente.`);
+            // }
             const token = await generateToken(usuario);
             const logText = `Login realizado token: ${token}`;
             await LogController.writeToTxt(logText);

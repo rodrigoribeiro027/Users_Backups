@@ -6,9 +6,9 @@ class RegistersDelete{
     public async removeBackupsRegister(req: Request, res: Response){
         try{
             const registers = await RegistrosDeleteService.removerDeleteUserFromMainCollection();
-            return res.json("registros removidos");
+            return res.status(200).json("registros removidos");
         }catch(error){
-            return res.json(error)
+            return res.status(500).json(error)
         }
     }
 }
