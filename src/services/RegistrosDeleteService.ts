@@ -3,10 +3,17 @@ import { RegistrosDelete} from "../models/RegistrosDelete";
 
 
 class RegistrosDeleteService{
-    public async insertDeleteRegister(id: string){
+    public async insertDeleteRegister(usuario){
         try{
-            const new_register = new RegistrosDelete({dataEntrada: new Date(), idDelete: id});
-            const register = await RegistrosDelete.create(new_register);
+            let registro = {
+                dataEntrada: new Date(),
+                idDelete: usuario._id,
+                historicoTermo: [],
+                historicoSubtermo: [],
+            }
+            registro.historicoTermo = usuario.TermosUso;
+            registro.historicoSubtermo = usuario.termoOpcoes;
+            const register = await RegistrosDelete.create(registro);
             return register;
         }catch(error){
             console.log(error);

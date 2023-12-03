@@ -48,6 +48,20 @@ class UsuarioService {
         }
     }
 
+    public async findUsuarioById(id: string) {
+        try {
+            const usuario = await Usuarios.findById(id).populate({
+                path: 'TermosUso termoOpcoes',
+                populate: {
+                    path: 'termo opcaoTermo'
+                }
+            });
+            return usuario;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     public async updateUsuario(id: string, usuarioData: any) {
         try {
             const usuario = await Usuarios.findById(id);

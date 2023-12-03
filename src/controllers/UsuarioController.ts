@@ -48,12 +48,16 @@ class UsuarioController {
 
     public async deleteUser(req: Request, res: Response) {
         try {
-            const usuarioId = req.params.id;
-            const deletedUsuario = await UsuarioService.deleteUsuario(usuarioId);
-            if (!deletedUsuario) {
-                throw `Não encontrado ${usuarioId}.`
+            const id = req.params.id;
+            const usuario = await UsuarioService.findUsuarioById(id);
+            if(!usuario){
+                return res.status(404).json({message:`Usuario ${id} não encontrado.`});
             }
-            await UsuariosDeleteService.insertDeleteRegister(usuarioId);
+            const deletedUsuario = await UsuarioService.deleteUsuario(id);
+            if (!deletedUsuario) {
+                return res.status(404).json({message:`Usuario ${id} não encontrado.`});
+            }
+            await UsuariosDeleteService.insertDeleteRegister(usuario);
             const logText = `Usuario deletado: ${JSON.stringify(deletedUsuario._id)}`;
             await LogController.writeToTxt(logText);
             res.status(200).json(deletedUsuario);
