@@ -7,6 +7,6 @@ const routes = Router();
 routes.post("/criar", UsuarioController.createUsuario);
 routes.get("/buscar", authenticate, UsuarioController.findAllUsuarios);
 routes.put("/atualizar/:id", authenticate, UsuarioController.updateUsuario);
-routes.delete("/excluir/:id", authenticate, UsuarioController.deleteProduct);
+routes.delete("/excluir/:id", authenticate, UsuarioController.deleteUser);
 
 export default routes;

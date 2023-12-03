@@ -6,13 +6,14 @@ import { CreateUsuarioRequestBody } from '../models/interfaces/usuario';
 
 
 class UsuarioController {
-
     public async createUsuario(req: Request, res: Response) {
         try {
-
             const body: CreateUsuarioRequestBody = req.body;
+            if(!body.termo.aceite){
+                return res.status(401).json({message:'Necessario aprovação dos termos de uso'})
+            }
             if (!body.nome || !body.email || !body.telefone || !body.endereco || !body.dataNascimento || !body.senha) {
-                throw new Error("Todos os campos são obrigatórios.");
+                return res.status(400).json({ message: "Todos os campos são obrigatórios." });
             }
             const usuario = await UsuarioService.createUsuario(body);
             const logText = `Usuario foi Criado id: ${JSON.stringify(usuario._id)}`;
@@ -45,7 +46,7 @@ class UsuarioController {
         }
     }
 
-    public async deleteProduct(req: Request, res: Response) {
+    public async deleteUser(req: Request, res: Response) {
         try {
             const usuarioId = req.params.id;
             const deletedUsuario = await UsuarioService.deleteUsuario(usuarioId);
