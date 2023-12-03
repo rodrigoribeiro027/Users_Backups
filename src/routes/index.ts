@@ -6,6 +6,7 @@ import RegistrosDelete from "./RegistersDeleteRouter"
 import LoginController from "../controllers/LoginController";
 import TermoRouter from "./termoRouter";
 import OpcaoTermoRouter from "./opcaoTermoRouter";
+import TransacoesRouter from "./TransacoesRouter";
 
 const routes = Router();
 
@@ -21,5 +22,6 @@ routes.use('/usuario', UsuarioRouter );
 routes.use('/registros', RegistrosDelete);
 routes.use('/termo', TermoRouter);
 routes.use('/opcao', OpcaoTermoRouter);
+routes.use('/transacao', TransacoesRouter);
 
 export default routes;
