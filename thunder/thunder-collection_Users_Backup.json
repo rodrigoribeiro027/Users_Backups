@@ -1,0 +1,88 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Users_Backup",
+    "dateExported": "2023-12-03T01:15:32.751Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
+            "name": "Usuario",
+            "containerId": "",
+            "created": "2023-12-03T01:14:23.868Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "434a23c2-fee7-4d91-b140-79f06706cf4d",
+            "name": "Termo",
+            "containerId": "",
+            "created": "2023-12-03T01:14:46.941Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "e18ff584-e562-4645-83da-93b0cbb9dcd3",
+            "name": "Opções ",
+            "containerId": "",
+            "created": "2023-12-03T01:15:11.956Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "37d96b26-d2e5-4209-8f3b-94533b07436e",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
+            "name": "localhost:3004/usuario/criar",
+            "url": "localhost:3004/usuario/criar",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-03T01:14:38.127Z",
+            "modified": "2023-12-03T01:14:38.127Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"nome\":\"Nicolas\",\n  \"email\":\"nicolas@gmail.com\",\n  \"senha\":\"senha\",\n  \"telefone\":\"123456789\",\n  \"cpf\":555555555555,\n  \"endereco\":\"aaaaaaaa\",\n  \"dataNascimento\":2023, \n  \"termo\":{\n    \"termo\":\"656bd42309a6f2be825b5b00\",\n    \"aceite\":true\n  },\n  \"opcoes\":[\n    {\n      \"opcaoTermo\":\"656bd578bb6afa49db01af79\",\n      \"aceite\":true\n    }  \n  ]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a43fed2d-f175-4068-a655-ab2b5121c34b",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "434a23c2-fee7-4d91-b140-79f06706cf4d",
+            "name": "localhost:3004/termo/criar",
+            "url": "localhost:3004/termo/criar",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-03T01:14:59.943Z",
+            "modified": "2023-12-03T01:14:59.943Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"descricao\":\"teste\",\n  \"versao\":\"1.0\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fb65c09e-c08f-4266-9e73-581370a5d9f1",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "e18ff584-e562-4645-83da-93b0cbb9dcd3",
+            "name": "localhost:3004/opcao/criar",
+            "url": "localhost:3004/opcao/criar",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-12-03T01:15:24.023Z",
+            "modified": "2023-12-03T01:15:24.023Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"descricao\":\"aceito receber email\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
