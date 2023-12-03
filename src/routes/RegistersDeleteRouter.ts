@@ -5,6 +5,6 @@ import { authenticate, verifyAdm, verifyTermoVersion } from "../middleware/authe
 const routes = Router();
 
 
-routes.delete("/excluir", authenticate, verifyTermoVersion, verifyAdm, RegistersDeleteController.removeBackupsRegister)
+routes.delete("/excluir", authenticate, RegistersDeleteController.removeBackupsRegister)
 
 export default routes;

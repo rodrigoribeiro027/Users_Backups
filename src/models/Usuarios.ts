@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 import Termo from "./Termo";
+import transacao from './Transacao';
+import usuariosOpcoesTermo from './UsuariosOpcoesTermo';
+import usuarioTermo from './UsuariosTermo';
 
 
 const { Schema } = mongoose;
@@ -11,10 +14,15 @@ const usuarios = new Schema({
     telefone:String,
     endereco:String,
     dataNascimento:Date,
-    TermosUso:Termo,
+    TermosUso: [usuarioTermo],
+    termoOpcoes: [usuariosOpcoesTermo],
+    transacoes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: transacao
+    }],
     dataCadastro:String,
     type: Number,
-})
+});
 
 const Usuarios = mongoose.model("usuarios", usuarios);
 

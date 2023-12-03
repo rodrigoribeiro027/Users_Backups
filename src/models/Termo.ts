@@ -4,8 +4,14 @@ import mongoose from 'mongoose';
 
 const termo = new mongoose.Schema({
     versao:String,
-    aceito:Boolean
-})
+    descricao:String,
+    dataCriacao:{
+        type: Date,
+        default: new Date()
+    }
+});
 
 
-export default termo;
+const Termo = mongoose.model("termos", termo);
+
+export default Termo;
