@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Users_Backup",
-    "dateExported": "2023-12-03T01:15:32.751Z",
+    "dateExported": "2023-12-03T01:39:44.934Z",
     "version": "1.1",
     "folders": [
         {
@@ -31,17 +31,17 @@
             "_id": "37d96b26-d2e5-4209-8f3b-94533b07436e",
             "colId": "f71867c1-722e-452a-9445-0dabf4965297",
             "containerId": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
-            "name": "localhost:3004/usuario/criar",
+            "name": "Criar usuario",
             "url": "localhost:3004/usuario/criar",
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-12-03T01:14:38.127Z",
-            "modified": "2023-12-03T01:14:38.127Z",
+            "modified": "2023-12-03T01:21:30.786Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"nome\":\"Nicolas\",\n  \"email\":\"nicolas@gmail.com\",\n  \"senha\":\"senha\",\n  \"telefone\":\"123456789\",\n  \"cpf\":555555555555,\n  \"endereco\":\"aaaaaaaa\",\n  \"dataNascimento\":2023, \n  \"termo\":{\n    \"termo\":\"656bd42309a6f2be825b5b00\",\n    \"aceite\":true\n  },\n  \"opcoes\":[\n    {\n      \"opcaoTermo\":\"656bd578bb6afa49db01af79\",\n      \"aceite\":true\n    }  \n  ]\n}",
+                "raw": "{\n \"nome\":\"Nicolas\",\n  \"email\":\"nicolas@gmail.com\",\n  \"senha\":\"senha\",\n  \"telefone\":\"123456789\",\n  \"cpf\":555555555555,\n  \"endereco\":\"aaaaaaaa\",\n  \"dataNascimento\":2023, \n  \"termo\":{\n    \"termo\":\"656bd42309a6f2be825b5b00\",\n    \"aceite\":false\n  },\n  \"opcoes\":[\n    {\n      \"opcaoTermo\":\"656bd578bb6afa49db01af79\",\n      \"aceite\":true\n    }  \n  ]\n}",
                 "form": []
             },
             "tests": []
@@ -82,6 +82,57 @@
                 "raw": "{\n  \"descricao\":\"aceito receber email\"\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "ec24dc1b-7e5b-4a1f-9ddc-10cc75aa0bc1",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
+            "name": "Login",
+            "url": "localhost:3004/login",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-12-03T01:20:56.853Z",
+            "modified": "2023-12-03T01:20:56.853Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"email\": \"nicolas@gmail.com\",\r\n  \"senha\": \"senha\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c9966655-cc4b-45ad-9f1e-d07298c49a93",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
+            "name": "Buscar usuarios",
+            "url": "localhost:3004/usuario/buscar",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-12-03T01:33:55.281Z",
+            "modified": "2023-12-03T01:33:55.281Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTZiZDVkMWJiNmFmYTQ5ZGIwMWFmN2IiLCJub21lIjoiTmljb2xhcyIsImVtYWlsIjoibmljb2xhc0BnbWFpbC5jb20iLCJzZW5oYSI6InNlbmhhIiwidGVsZWZvbmUiOiIxMjM0NTY3ODkiLCJlbmRlcmVjbyI6ImFhYWFhYWFhIiwiZGF0YU5hc2NpbWVudG8iOiIxOTcwLTAxLTAxVDAwOjAwOjAyLjAyM1oiLCJUZXJtb3NVc28iOlt7InRlcm1vIjoiNjU2YmQ0MjMwOWE2ZjJiZTgyNWI1YjAwIiwiYWNlaXRlIjp0cnVlLCJkYXRhUmVnaXN0cm8iOiIyMDIzLTEyLTAzVDAxOjExOjQ1LjMwOFoiLCJfaWQiOiI2NTZiZDVkMWJiNmFmYTQ5ZGIwMWFmN2MifV0sInRlcm1vT3Bjb2VzIjpbeyJvcGNhb1Rlcm1vIjoiNjU2YmQ1NzhiYjZhZmE0OWRiMDFhZjc5IiwiYWNlaXRlIjp0cnVlLCJkYXRhUmVnaXN0cm8iOiIyMDIzLTEyLTAzVDAxOjA4OjU0LjYwNVoiLCJfaWQiOiI2NTZiZDVkMWJiNmFmYTQ5ZGIwMWFmN2QifV0sInRyYW5zYWNvZXMiOltdLCJkYXRhQ2FkYXN0cm8iOiIyMDIzLTEyLTAzVDAxOjA4OjU0LjYxM1oiLCJ0eXBlIjpudWxsLCJpYXQiOjE3MDE1NjYzNzZ9.kzMoJoit3d3oH46rKVLpwVUXUrp-0n0sTCXp8fCfLyQ"
+            },
+            "tests": []
+        },
+        {
+            "_id": "d9b5c9bc-81f8-47f1-ae6d-e437a6592721",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "434a23c2-fee7-4d91-b140-79f06706cf4d",
+            "name": "buscar ultima versao do termo",
+            "url": "localhost:3004/termo/buscarUltimaVersao",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-12-03T01:39:11.223Z",
+            "modified": "2023-12-03T01:39:11.223Z",
+            "headers": [],
+            "params": [],
             "tests": []
         }
     ]

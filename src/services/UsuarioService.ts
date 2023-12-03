@@ -25,7 +25,6 @@ class UsuarioService {
                 dataRegistro: new Date()
             }
 
-
             usuario.termoOpcoes = body.opcoes;
             usuario.TermosUso.push(termo);
             const response = await Usuarios.create(usuario);
@@ -37,7 +36,12 @@ class UsuarioService {
     
     public async findAllUsuarios() {
         try {
-            const usuarios = await Usuarios.find();
+            const usuarios = await Usuarios.find().populate({
+                path: 'TermosUso termoOpcoes',
+                populate: {
+                    path: 'termo opcaoTermo'
+                }
+            });
             return usuarios;
         } catch (error) {
             throw error;

@@ -11,6 +11,16 @@ class TermoService{
             throw error
         }
     }
+
+    public async findLastVersion(){
+        try {
+            const termo = await Termo.findOne();
+            console.log(termo);
+            return termo;
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 export default new TermoService();

@@ -14,6 +14,15 @@ class TermoController{
             return res.status(500).json({ error: error.message });
         }
     }
+
+    public async findLastTermoVersion(req: Request, res: Response) {
+        try {
+            const termo = await TermoService.findLastVersion();
+            return res.status(200).json(termo);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 
