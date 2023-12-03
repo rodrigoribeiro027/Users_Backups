@@ -2,14 +2,19 @@ import { Request, Response } from 'express';
 import UsuarioService from '../services/UsuarioService';
 import UsuariosDeleteService from '../services/RegistrosDeleteService';
 import LogController from './LogController';
+import { CreateUsuarioRequestBody } from '../models/interfaces/usuario';
 
 
 class UsuarioController {
 
     public async createUsuario(req: Request, res: Response) {
         try {
-            const { nome, email, senha, telefone, endereco, dataNascimento, termo, type } = req.body;
-            const usuario = await UsuarioService.createUsuario(nome, email, senha, telefone, endereco, dataNascimento, termo, type);
+
+            const body: CreateUsuarioRequestBody = req.body;
+            if (!body.nome || !body.email || !body.telefone || !body.endereco || !body.dataNascimento || !body.senha) {
+                throw new Error("Todos os campos são obrigatórios.");
+            }
+            const usuario = await UsuarioService.createUsuario(body);
             const logText = `Usuario foi Criado id: ${JSON.stringify(usuario._id)}`;
             await LogController.writeToTxt(logText);
             res.status(201).json(usuario);

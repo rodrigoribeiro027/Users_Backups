@@ -11,6 +11,7 @@ const usuarios = new Schema({
     nome:String,
     email:String,
     senha: String,
+    cpf: Number,
     telefone:String,
     endereco:String,
     dataNascimento:Date,
@@ -20,7 +21,10 @@ const usuarios = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: transacao
     }],
-    dataCadastro:String,
+    dataCadastro:{
+        type: Date,
+        default: new Date()
+    },
     type: Number,
 });
 

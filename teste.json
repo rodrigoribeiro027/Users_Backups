@@ -1,0 +1,51 @@
+{
+    "nome":"Nicolas",
+    "email":"nicolas@gmail.com",
+    "senha":"senha",
+    "telefone":"123456789",
+    "cpf":555555555555,
+    "endereco":"aaaaaaaa",
+    "dataNascimento":2023-01-11,
+    "TermosUso":[
+        {
+            "termo":{
+                "versao":"1.0",
+                "descricao":"Termo de uso 1.0",
+                "dataCriacao":2023-01-11
+            },
+            "aceite":true,
+            "dataRegistro":2023-01-11
+        }
+    ],
+    "termoOpcoes":[
+        {
+            "opcaoTermo":{
+                "descricao":"Aceito receber comunicações importantes via email",
+                "dataCriacao":2023-01-11
+            },
+            "aceite":true,
+            "dataRegistro":2023-01-11
+        },
+        {
+            "opcaoTermo":{
+                "descricao":"Aceito receber ofertas exclusivas, promoções e informações sobre produtos",
+                "dataCriacao":2023-01-11
+            },
+            "aceite":true,
+            "dataRegistro":2023-01-11
+        }
+    ],
+    "transacoes":[
+        {
+            "value":20000,
+            "data":2023-01-11,
+            "tipo":"deposito"
+        },
+        {
+            "value":200,
+            "data":2023-01-11,
+            "tipo":"saque"
+        }
+    ],
+    "dataCadastro":2023-01-11
+}
