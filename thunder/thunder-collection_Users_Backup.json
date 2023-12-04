@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Users_Backup",
-    "dateExported": "2023-12-03T01:39:44.934Z",
+    "dateExported": "2023-12-04T21:58:31.431Z",
     "version": "1.1",
     "folders": [
         {
@@ -36,12 +36,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-12-03T01:14:38.127Z",
-            "modified": "2023-12-03T01:21:30.786Z",
+            "modified": "2023-12-03T23:38:10.551Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"nome\":\"Nicolas\",\n  \"email\":\"nicolas@gmail.com\",\n  \"senha\":\"senha\",\n  \"telefone\":\"123456789\",\n  \"cpf\":555555555555,\n  \"endereco\":\"aaaaaaaa\",\n  \"dataNascimento\":2023, \n  \"termo\":{\n    \"termo\":\"656bd42309a6f2be825b5b00\",\n    \"aceite\":false\n  },\n  \"opcoes\":[\n    {\n      \"opcaoTermo\":\"656bd578bb6afa49db01af79\",\n      \"aceite\":true\n    }  \n  ]\n}",
+                "raw": "{\n \"nome\":\"teste\",\n  \"email\":\"teste@gmail.com\",\n  \"senha\":\"senha\",\n  \"telefone\":\"123456789\",\n  \"cpf\":555555555555,\n  \"endereco\":\"aaaaaaaa\",\n  \"dataNascimento\":2023, \n  \"termo\":{\n    \"termo\":\"656bde8308e39df9af7f9c3c\",\n    \"aceite\":true\n  },\n  \"opcoes\":[\n    {\n      \"opcaoTermo\":\"656bd578bb6afa49db01af79\",\n      \"aceite\":true\n    }  \n  ]\n}",
                 "form": []
             },
             "tests": []
@@ -55,12 +55,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-12-03T01:14:59.943Z",
-            "modified": "2023-12-03T01:14:59.943Z",
+            "modified": "2023-12-03T01:48:51.132Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"descricao\":\"teste\",\n  \"versao\":\"1.0\"\n}",
+                "raw": "{\n  \"descricao\":\"teste\",\n  \"versao\":\"3.1\"\n}",
                 "form": []
             },
             "tests": []
@@ -71,15 +71,15 @@
             "containerId": "e18ff584-e562-4645-83da-93b0cbb9dcd3",
             "name": "localhost:3004/opcao/criar",
             "url": "localhost:3004/opcao/criar",
-            "method": "GET",
+            "method": "POST",
             "sortNum": 30000,
             "created": "2023-12-03T01:15:24.023Z",
-            "modified": "2023-12-03T01:15:24.023Z",
+            "modified": "2023-12-04T21:57:48.849Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"descricao\":\"aceito receber email\"\n}",
+                "raw": "{\n  \"descricao\":\"aceito receber ligações\"\n}",
                 "form": []
             },
             "tests": []
@@ -93,12 +93,12 @@
             "method": "POST",
             "sortNum": 40000,
             "created": "2023-12-03T01:20:56.853Z",
-            "modified": "2023-12-03T01:20:56.853Z",
+            "modified": "2023-12-04T00:09:39.992Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\r\n  \"email\": \"nicolas@gmail.com\",\r\n  \"senha\": \"senha\"\r\n}",
+                "raw": "{\n  \"email\": \"nicolas@gmail.com\",\n  \"senha\": \"senha\"\n}",
                 "form": []
             },
             "tests": []
@@ -133,6 +133,47 @@
             "modified": "2023-12-03T01:39:11.223Z",
             "headers": [],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "806b9915-e18b-4168-a576-fd28e0611143",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
+            "name": "Excluir usuario",
+            "url": "localhost:3004/usuario/excluir/656d11a92120d487ac7bf881",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2023-12-03T23:34:29.993Z",
+            "modified": "2023-12-03T23:39:26.852Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTZkMGIxYWIxMTRjOTQ1MmZmODM1OTYiLCJub21lIjoidGVzdGUiLCJlbWFpbCI6InRlc3RlQGdtYWlsLmNvbSIsInNlbmhhIjoic2VuaGEiLCJ0ZWxlZm9uZSI6IjEyMzQ1Njc4OSIsImVuZGVyZWNvIjoiYWFhYWFhYWEiLCJkYXRhTmFzY2ltZW50byI6IjE5NzAtMDEtMDFUMDA6MDA6MDIuMDIzWiIsIlRlcm1vc1VzbyI6W3sidGVybW8iOnsiX2lkIjoiNjU2YmRlODMwOGUzOWRmOWFmN2Y5YzNjIiwidmVyc2FvIjoiMy4xIiwiZGVzY3JpY2FvIjoidGVzdGUiLCJkYXRhQ3JpYWNhbyI6IjIwMjMtMTItMDNUMDE6NDY6MjkuNTgyWiIsIl9fdiI6MH0sImFjZWl0ZSI6dHJ1ZSwiZGF0YVJlZ2lzdHJvIjoiMjAyMy0xMi0wM1QyMzoxMToyMi44NDdaIiwiX2lkIjoiNjU2ZDBiMWFiMTE0Yzk0NTJmZjgzNTk3In1dLCJ0ZXJtb09wY29lcyI6W3sib3BjYW9UZXJtbyI6IjY1NmJkNTc4YmI2YWZhNDlkYjAxYWY3OSIsImFjZWl0ZSI6dHJ1ZSwiZGF0YVJlZ2lzdHJvIjoiMjAyMy0xMi0wM1QyMzowOTo1OS4wMjZaIiwiX2lkIjoiNjU2ZDBiMWFiMTE0Yzk0NTJmZjgzNTk4In1dLCJ0cmFuc2Fjb2VzIjpbXSwiZGF0YUNhZGFzdHJvIjoiMjAyMy0xMi0wM1QyMzowOTo1OS4wMzZaIiwidHlwZSI6bnVsbCwiaWF0IjoxNzAxNjQ1MTAxfQ.i02KlkqWw2mNFuMicqXV_asysP8-zoXuxgO-Ijc6_kY"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f2a6cba5-20e6-444c-9909-6f5cf9e6ed93",
+            "colId": "f71867c1-722e-452a-9445-0dabf4965297",
+            "containerId": "8a52e96c-615b-48bb-8b5c-32b30c0872a8",
+            "name": "Adicionar nova opção de subtermo",
+            "url": "localhost:3004/usuario/OpcaoTermo",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2023-12-04T00:02:19.192Z",
+            "modified": "2023-12-04T21:57:54.342Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":\"656e4b5c6db8215417372739\",\n  \"aceite\":true\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTZiZDVkMWJiNmFmYTQ5ZGIwMWFmN2IiLCJub21lIjoiTmljb2xhcyIsImVtYWlsIjoibmljb2xhc0BnbWFpbC5jb20iLCJzZW5oYSI6InNlbmhhIiwidGVsZWZvbmUiOiIxMjM0NTY3ODkiLCJlbmRlcmVjbyI6ImFhYWFhYWFhIiwiZGF0YU5hc2NpbWVudG8iOiIxOTcwLTAxLTAxVDAwOjAwOjAyLjAyM1oiLCJUZXJtb3NVc28iOlt7InRlcm1vIjp7Il9pZCI6IjY1NmJkNDIzMDlhNmYyYmU4MjViNWIwMCIsInZlcnNhbyI6IjEuMCIsImRlc2NyaWNhbyI6InRlc3RlIiwiZGF0YUNyaWFjYW8iOiIyMDIzLTEyLTAzVDAxOjA0OjMzLjQ5NVoiLCJfX3YiOjB9LCJhY2VpdGUiOnRydWUsImRhdGFSZWdpc3RybyI6IjIwMjMtMTItMDNUMDE6MTE6NDUuMzA4WiIsIl9pZCI6IjY1NmJkNWQxYmI2YWZhNDlkYjAxYWY3YyJ9LHsidGVybW8iOnsiX2lkIjoiNjU2YmRlODMwOGUzOWRmOWFmN2Y5YzNjIiwidmVyc2FvIjoiMy4xIiwiZGVzY3JpY2FvIjoidGVzdGUiLCJkYXRhQ3JpYWNhbyI6IjIwMjMtMTItMDNUMDE6NDY6MjkuNTgyWiIsIl9fdiI6MH0sImFjZWl0ZSI6dHJ1ZSwiZGF0YVJlZ2lzdHJvIjoiMjAyMy0xMi0wM1QwNzoxMTo0NS4zMDhaIiwiX2lkIjoiNjU2ZDBhOTBkODBmMDdhZTljNmUyNTk3In1dLCJ0ZXJtb09wY29lcyI6W3sib3BjYW9UZXJtbyI6IjY1NmJkNTc4YmI2YWZhNDlkYjAxYWY3OSIsImFjZWl0ZSI6dHJ1ZSwiZGF0YVJlZ2lzdHJvIjoiMjAyMy0xMi0wM1QwMTowODo1NC42MDVaIiwiX2lkIjoiNjU2YmQ1ZDFiYjZhZmE0OWRiMDFhZjdkIn1dLCJ0cmFuc2Fjb2VzIjpbXSwiZGF0YUNhZGFzdHJvIjoiMjAyMy0xMi0wM1QwMTowODo1NC42MTNaIiwidHlwZSI6bnVsbCwiaWF0IjoxNzAxNjQ4NTc5fQ.Dui76qj8RaDG8QOTy4S4dzPw2RnCymYSsUog-lj9oMg"
+            },
             "tests": []
         }
     ]

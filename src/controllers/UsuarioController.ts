@@ -83,36 +83,42 @@ class UsuarioController {
             let opcaoTermoAntigo;
             const opcoesAgrupadas = usuario.termoOpcoes.reduce((accumulator, current) => {
                 const key = current.opcaoTermo._id.toString();
-              
+
                 if (!accumulator[key] || accumulator[key].dataRegistro < current.dataRegistro) {
-                  accumulator[key] = current;
+                    accumulator[key] = {
+                        opcaoTermo: current.opcaoTermo,
+                        aceite: current.aceite,
+                        dataRegistro: current.dataRegistro,
+                    };
+                } else {
+                    accumulator[key].aceite = current.aceite;
                 }
-              
+
                 return accumulator;
-              }, {});
+            }, {});
             let resultado = Object.values(opcoesAgrupadas);
 
             for (let i = 0; i < resultado.length; i++) {
                 const resultadoItem = resultado[i] as { opcaoTermo?: { _id: string }, aceite: boolean };
                 if (opcao._id.toString() === resultadoItem.opcaoTermo._id.toString()) {
-                    console.log("achei")
                     existe = true;
-                    opcaoTermoAntigo = resultadoItem.opcaoTermo;
+                    opcaoTermoAntigo = resultadoItem;
                     break;
                 }
             }
 
             let value;
-            if(existe){
-                value = !opcaoTermoAntigo.aceite
-            }else{
-                value = body.aceite
+            if (existe) {
+                value = !opcaoTermoAntigo.aceite;
+            } else {
+                value = body.aceite;
             }
             const opcaoTermo = {
                 aceite: value,
                 opcaoTermo: opcao._id,
                 dataRegistro: new Date()
-            }
+            };
+
             const ret = await UsuarioService.updateOpcaoTermoUsuario(usuario, opcaoTermo);
             res.status(200).json(ret);
         } catch (error) {
