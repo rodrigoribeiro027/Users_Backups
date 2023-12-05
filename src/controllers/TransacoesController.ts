@@ -16,14 +16,17 @@ class TransacoesController {
             res.status(500).json({ message: error.message });
         }
     }
-    public async criarTrasacao(req: Request, res: Response) {
+    public async createTransacao(req: Request, res: Response) {
         try {
             const userId = res.locals.jwtPayload._id;
             const usuario = await UsuarioService.findUsuarioById(userId);
-            const { valor, tipo, data } = req.body;
+            const { valor, tipo, data } = req.body;          
             const response = await TransacaoService.createTransacao(valor, tipo, data, usuario);
+            const logText = `Tipo de açâo: ${tipo} feito(a) pelo Usuario do id: ${JSON.stringify(userId)}`;
+            await LogController.writeToTxt(logText);
             return res.status(200).json(response);
         } catch (error) {
+            console.log(error)
             res.status(500).json(error);
         }
     }

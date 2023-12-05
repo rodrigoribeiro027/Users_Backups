@@ -19,13 +19,12 @@ class TransacaoService {
         try {
             const transacao = new Transacao({
                 valor: valor,
-                descricao: tipo,
-                data_estimada: data,
+                tipo: tipo,
+                data: data,
             });
-            const response = await transacao.save();
-            usuario.transacao.push(response);
+            usuario.transacoes.push(transacao);
             await usuario.save();
-            return response;
+            return usuario;
         } catch (error) {
             throw error;
         }

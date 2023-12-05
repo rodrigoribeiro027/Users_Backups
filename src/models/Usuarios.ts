@@ -17,10 +17,7 @@ const usuarios = new Schema({
     dataNascimento:Date,
     TermosUso: [usuarioTermo],
     termoOpcoes: [usuariosOpcoesTermo],
-    transacoes: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: transacao
-    }],
+    transacoes: [transacao],
     dataCadastro:{
         type: Date,
         default: new Date()
