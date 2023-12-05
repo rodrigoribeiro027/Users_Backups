@@ -17,7 +17,7 @@ class UsuarioController {
                 return res.status(400).json({ message: "Todos os campos são obrigatórios." });
             }
             const usuario = await UsuarioService.createUsuario(body);
-            const logText = `Usuario foi Criado id: ${JSON.stringify(usuario._id)}`;
+            const logText = `Tipo de açâo: Criação de Usuario, Usuario foi Criado id: ${JSON.stringify(usuario._id)}`;
             await LogController.writeToTxt(logText);
             res.status(201).json(usuario);
         } catch (error) {
@@ -38,10 +38,10 @@ class UsuarioController {
         try {
             const usuarioId = req.params.id;
             const usuarioData = req.body;
-            const updatedProduto = await UsuarioService.updateUsuario(usuarioId, usuarioData);
-            const logText = `Usuario Atualizado id: ${JSON.stringify(updatedProduto._id)}`;
+            const updatedUsuario = await UsuarioService.updateUsuario(usuarioId, usuarioData);
+            const logText = `Tipo de açâo: Atualização de Usuario, Usuario do id: ${JSON.stringify(updatedUsuario._id)} foi atualizado`;
             await LogController.writeToTxt(logText);
-            res.status(200).json(updatedProduto);
+            res.status(200).json(updatedUsuario);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -59,7 +59,7 @@ class UsuarioController {
                 return res.status(404).json({ message: `Usuario ${id} não encontrado.` });
             }
             await UsuariosDeleteService.insertDeleteRegister(usuario);
-            const logText = `Usuario deletado: ${JSON.stringify(deletedUsuario._id)}`;
+            const logText = `Tipo de açâo: DELETE,Usuario foi deletado: ${JSON.stringify(deletedUsuario._id)}`;
             await LogController.writeToTxt(logText);
             res.status(200).json(deletedUsuario);
         } catch (error) {

@@ -29,7 +29,7 @@ class LoginController{
                 return res.status(403).json({message:'Os termos de uso foram atualizados, por favor verifique e aceite novamente.'});
             }
             const token = await generateToken(usuario);
-            const logText = `Login realizado token: ${token}`;
+            const logText = `Login realizado token do Usuario: ${token}`;
             await LogController.writeToTxt(logText);
             res.set('Authorization', `Bearer ${token}`);
             return res.status(200).json({message:'Login realizado com sucesso...', token:token, termo:usuario.TermosUso});
