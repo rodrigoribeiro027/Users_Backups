@@ -14,6 +14,22 @@ class TransacaoService {
             throw error;
         }
     }
+
+    public async createTransacao(valor, tipo, data, usuario) {
+        try {
+            const transacao = new Transacao({
+                valor: valor,
+                descricao: tipo,
+                data_estimada: data,
+            });
+            const response = await transacao.save();
+            usuario.transacao.push(response);
+            await usuario.save();
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default new TransacaoService ()
