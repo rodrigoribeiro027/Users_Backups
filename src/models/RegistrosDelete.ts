@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import * as dotenv from "dotenv";
+import usuarioTermo from './UsuariosTermo';
+import usuariosOpcoesTermo from './UsuariosOpcoesTermo';
 
 
 dotenv.config()
@@ -10,7 +12,9 @@ const { Schema } = mongoose;
 
 const usuariosDelete = new Schema({ 
     idDelete:String,
-    dataEntrada:Date
+    dataEntrada:Date,
+    historicoTermo:[usuarioTermo],
+    historicoSubtermo:[usuariosOpcoesTermo]
 })
 let conectionDeleteRegisters;
 let RegistrosDelete;

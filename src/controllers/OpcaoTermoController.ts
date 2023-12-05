@@ -13,6 +13,16 @@ class OpcaoTermoController{
             return res.status(500).json({ error: error.message });
         }
     }
+
+    public async findOpcaoTermoById(req: Request, res: Response) {
+        try {
+            const id = req.params.id;
+            const opcaoTermo = await OpcaoTermoService.findOpcaoTermoById(id);
+            return res.status(200).json(opcaoTermo);
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 

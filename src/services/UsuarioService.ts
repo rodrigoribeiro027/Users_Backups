@@ -1,6 +1,7 @@
 import { Usuarios } from "../models/Usuarios";
 import { VERSION } from '../termoVersion';
 import { CreateUsuarioRequestBody } from '../models/interfaces/usuario';
+import { OpcaoTermoInterface } from "../models/interfaces/opcaoTermo";
 
 
 class UsuarioService {
@@ -43,6 +44,20 @@ class UsuarioService {
                 }
             });
             return usuarios;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    public async findUsuarioById(id: string) {
+        try {
+            const usuario = await Usuarios.findById(id).populate({
+                path: 'TermosUso termoOpcoes',
+                populate: {
+                    path: 'termo opcaoTermo'
+                }
+            });
+            return usuario;
         } catch (error) {
             throw error;
         }
@@ -91,6 +106,16 @@ class UsuarioService {
             return UsuarioSelecionado;
         } catch (error) {
             throw error
+        }
+    }
+
+    public async updateOpcaoTermoUsuario(usuario, opcao){
+        try{
+
+            const updatedTermo = await usuario.updateOne({$push: {termoOpcoes: opcao}});
+            return updatedTermo;
+        }catch(error){
+            throw error;
         }
     }
 }

@@ -11,6 +11,15 @@ class OpcaoTermoService{
             throw error
         }
     }
+
+    public async findOpcaoTermoById(id: string) {
+        try {
+            const opcaoTermo = await OpcaoTermo.findById(id);
+            return opcaoTermo
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 export default new OpcaoTermoService()

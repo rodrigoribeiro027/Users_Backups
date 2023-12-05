@@ -7,7 +7,6 @@ class TermoController{
     public async createTermo(req: Request, res: Response) {
         try {
             const body: CreateTermoRequestBody = req.body;
-            console.log("/////////")
             const termo = await TermoService.createTermo(body);
             return res.status(201).json(termo);
         } catch (error) {

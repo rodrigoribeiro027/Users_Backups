@@ -1,5 +1,5 @@
 node_modules
 .env
 .vercel
-.txt
-.log
+*.txt
+*.log

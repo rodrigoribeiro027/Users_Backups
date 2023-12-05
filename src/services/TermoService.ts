@@ -14,9 +14,9 @@ class TermoService{
 
     public async findLastVersion(){
         try {
-            const termo = await Termo.findOne();
-            console.log(termo);
-            return termo;
+            const termos = await Termo.find();
+            const ultimaVersao = termos.reduce((a, b) => a.versao > b.versao ? a : b);
+            return ultimaVersao;
         } catch (error) {
             throw error
         }
