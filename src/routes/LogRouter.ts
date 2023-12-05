@@ -56,5 +56,25 @@ routes.get('/buscaUserDate', async (req, res) => {
         res.status(500).json({ error: 'Erro durante a busca de logs.' });
     }
 });
+routes.get('/buscaDateTime', async (req, res) => {
+    try {
+        const { startDateTime, endDateTime } = req.query;
+        if (!startDateTime || !endDateTime) {
+            return res.status(400).json({ error: 'Parâmetros startDateTime e endDateTime são obrigatórios.' });
+        }
+        const resultadoBusca = await LogController.searchLogsDateTime({
+            startDateTime: startDateTime as string,
+            endDateTime: endDateTime as string,
+        });
+        if (resultadoBusca) {
+            res.status(200).json({ resultado: resultadoBusca });
+        } else {
+            res.status(404).json({ message: 'Nenhum registro encontrado para o período de tempo especificado.' });
+        }
+    } catch (error) {
+        console.error('Erro durante a busca de logs por período de tempo:', error);
+        res.status(500).json({ error: 'Erro durante a busca de logs por período de tempo.' });
+    }
+});
 
 export default routes;

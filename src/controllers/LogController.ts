@@ -84,6 +84,52 @@ class LogController {
             throw new Error('Erro inesperado na busca');
         }
     }
+    public async searchLogsDateTime(query: { userId?: string, dateTime?: string, startDateTime?: string, endDateTime?: string }): Promise<string[] | string | null> {
+        try {
+            const nomeDoArquivo = 'logs.txt';
+            const conteudoDoArquivo = await fs.promises.readFile(nomeDoArquivo, 'utf-8');
+            const linhas = conteudoDoArquivo.split('\n');
+
+            if (query.dateTime) {
+                const formatoDataHora = 'DD/MM/YYYY, HH:mm';
+                const dataHoraRequisicao = moment(query.dateTime, formatoDataHora);
+                const linhaEncontrada = linhas.find((linha) => {
+                    const match = linha.match(/Requisição: (\d{2}\/\d{2}\/\d{4}, \d{2}:\d{2})/);
+                    if (match) {
+                        const dataHoraRegistro = moment(match[1], formatoDataHora);
+                        return dataHoraRequisicao.isSame(dataHoraRegistro);
+                    }
+                    return false;
+                });
+
+                return linhaEncontrada || null;
+            } else if (query.userId) {
+                const linhasDoUsuario = linhas.filter((linha) => linha.includes(`id: "${query.userId}"`));
+                return linhasDoUsuario.length > 0 ? linhasDoUsuario : null;
+            } else if (query.startDateTime && query.endDateTime) {
+                const formatoDataHora = 'DD/MM/YYYY, HH:mm';
+                const startDateTime = moment(query.startDateTime, formatoDataHora);
+                const endDateTime = moment(query.endDateTime, formatoDataHora);
+
+                const linhasNoPeriodo = linhas.filter((linha) => {
+                    const match = linha.match(/Requisição: (\d{2}\/\d{2}\/\d{4}, \d{2}:\d{2})/);
+                    if (match) {
+                        const dataHoraRegistro = moment(match[1], formatoDataHora);
+                        return dataHoraRegistro.isBetween(startDateTime, endDateTime, null, '[]');
+                    }
+                    return false;
+                });
+
+                return linhasNoPeriodo.length > 0 ? linhasNoPeriodo : null;
+            } else {
+                return null;
+            }
+        } catch (error) {
+            console.error('Erro inesperado:', error);
+            throw new Error('Erro inesperado na busca');
+        }
+    }
+
 
 }
 const logController = new LogController();
