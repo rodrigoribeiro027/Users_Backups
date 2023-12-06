@@ -14,7 +14,8 @@ const usuariosDelete = new Schema({
     idDelete:String,
     dataEntrada:Date,
     historicoTermo:[usuarioTermo],
-    historicoSubtermo:[usuariosOpcoesTermo]
+    historicoSubtermo:[usuariosOpcoesTermo],
+    motivo: String
 })
 let conectionDeleteRegisters;
 let RegistrosDelete;

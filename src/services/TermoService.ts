@@ -18,7 +18,16 @@ class TermoService{
             const ultimaVersao = termos.reduce((a, b) => a.versao > b.versao ? a : b);
             return ultimaVersao;
         } catch (error) {
-            throw error
+            throw error;
+        }
+    }
+
+    public async findTermoById(id:string){
+        try{
+            const termo = await Termo.findById(id);
+            return termo;
+        }catch(error){
+            throw error;
         }
     }
 }
