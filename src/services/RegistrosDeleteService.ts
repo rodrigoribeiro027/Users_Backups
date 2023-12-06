@@ -3,11 +3,12 @@ import { RegistrosDelete} from "../models/RegistrosDelete";
 
 
 class RegistrosDeleteService{
-    public async insertDeleteRegister(usuario){
+    public async insertDeleteRegister(usuario, motivo="Conta excluida pelo usuário."){
         try{
             let registro = {
                 dataEntrada: new Date(),
                 idDelete: usuario._id,
+                motivo: motivo,
                 historicoTermo: [],
                 historicoSubtermo: [],
             }

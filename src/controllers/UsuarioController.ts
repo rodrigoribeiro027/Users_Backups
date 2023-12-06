@@ -1,9 +1,10 @@
-import { Request, Response } from 'express';
+import { Request, Response, response } from 'express';
 import UsuarioService from '../services/UsuarioService';
 import UsuariosDeleteService from '../services/RegistrosDeleteService';
 import LogController from './LogController';
 import { CreateUsuarioRequestBody } from '../models/interfaces/usuario';
 import OpcaoTermoService from '../services/OpcaoTermoService';
+import TermoService from '../services/TermoService';
 
 
 class UsuarioController {
@@ -122,7 +123,43 @@ class UsuarioController {
             const ret = await UsuarioService.updateOpcaoTermoUsuario(usuario, opcaoTermo);
             res.status(200).json(ret);
         } catch (error) {
-            res.status(500).json({ error: error.message });
+            res.status(500).json({ error: error });
+        }
+    }
+
+
+    public async atualizarTermoUsuario(req: Request, res: Response){
+        try{
+            const { _id } = res.locals.jwtPayload;
+            const usuario = await UsuarioService.findUsuarioById(_id);
+            if(!usuario){
+                return res.status(404).json("Usuario não encontrado.");
+            }
+
+            const { id, aceite }: {id:string, aceite: boolean} = req.body;
+            const termo = await TermoService.findTermoById(id);
+            if(!termo){
+                return res.status(404).json("Termo não encontrado");
+            }
+
+            // verificar se o termo enviado pelo body é a ultima versão
+            const ultimaVersao = await TermoService.findLastVersion();
+            if(termo.versao !== ultimaVersao.versao){
+                return res.status(403).json(`O termo ${id} está desatualiazado, por favor aceite a versão mais recente.`);
+            }
+
+            // verifica se o aceite enviado pro usuario é false, caso seja irá excluir o usuario
+            if(!aceite){
+                await UsuarioService.deleteUsuario(_id);
+                await UsuariosDeleteService.insertDeleteRegister(usuario, "Recusa do termo.");
+                return res.status(500).json("Usuário excluído com sucesso devido à recusa do termo.")
+            }
+
+            const ret = await UsuarioService.updateTermoUsuario(usuario, termo);
+            return res.status(200).json({ message: "Termo aceito com sucesso." });
+
+        }catch(error){
+            res.status(500).json({ error: error })
         }
     }
 }

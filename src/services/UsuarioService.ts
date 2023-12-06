@@ -111,8 +111,15 @@ class UsuarioService {
 
     public async updateOpcaoTermoUsuario(usuario, opcao){
         try{
-
             const updatedTermo = await usuario.updateOne({$push: {termoOpcoes: opcao}});
+            return updatedTermo;
+        }catch(error){
+            throw error;
+        }
+    }
+    public async updateTermoUsuario(usuario, termo){
+        try{
+            const updatedTermo = await usuario.updateOne({$push: {TermosUso: termo}});
             return updatedTermo;
         }catch(error){
             throw error;
