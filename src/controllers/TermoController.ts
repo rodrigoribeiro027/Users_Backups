@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateTermoRequestBody } from "../models/interfaces/termo";
 import TermoService from '../services/TermoService';
+import LogController from './LogController';
 
 class TermoController{
 
@@ -8,8 +9,12 @@ class TermoController{
         try {
             const body: CreateTermoRequestBody = req.body;
             const termo = await TermoService.createTermo(body);
+            const logText = `Tipo de serviço: Criação de Termo, Termo: ${JSON.stringify(termo)}`;
+            await LogController.writeToTxt(logText);
             return res.status(201).json(termo);
         } catch (error) {
+            const logText = `Tipo de serviço: Criação de Termo, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             return res.status(500).json({ error: error.message });
         }
     }
@@ -19,6 +24,8 @@ class TermoController{
             const termo = await TermoService.findLastVersion();
             return res.status(200).json(termo);
         } catch (error) {
+            const logText = `Tipo de serviço: Busca de Termo, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             return res.status(500).json({ error: error.message });
         }
     }

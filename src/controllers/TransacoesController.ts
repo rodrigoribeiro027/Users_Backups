@@ -14,6 +14,8 @@ class TransacoesController {
             res.status(200).json(transacoes);
         } catch (error) {
             res.status(500).json({ message: error.message });
+            const logText = ` Tipo de serviço: Busca de Transacoes do Usuario, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
         }
     }
     public async createTransacao(req: Request, res: Response) {
@@ -27,6 +29,8 @@ class TransacoesController {
             return res.status(200).json(response);
         } catch (error) {
             console.log(error)
+            const logText = ` Tipo de serviço: Criação de Transacao, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             res.status(500).json(error);
         }
     }

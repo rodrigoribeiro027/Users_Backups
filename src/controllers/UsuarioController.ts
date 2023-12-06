@@ -22,6 +22,8 @@ class UsuarioController {
             await LogController.writeToTxt(logText);
             res.status(201).json(usuario);
         } catch (error) {
+            const logText = `Tipo de serviço: Criação de Usuario, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             res.status(500).json({ error: error.message });
         }
     }
@@ -44,6 +46,8 @@ class UsuarioController {
             await LogController.writeToTxt(logText);
             res.status(200).json(updatedUsuario);
         } catch (error) {
+            const logText = `Tipo de serviço: Atualização de Usuario, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             res.status(500).json({ error: error.message });
         }
     }
@@ -64,6 +68,8 @@ class UsuarioController {
             await LogController.writeToTxt(logText);
             res.status(200).json(deletedUsuario);
         } catch (error) {
+            const logText = `Tipo de serviço: Deletar de Usuario, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             res.status(500).json({ error: error.message });
         }
     }
@@ -123,6 +129,8 @@ class UsuarioController {
             const ret = await UsuarioService.updateOpcaoTermoUsuario(usuario, opcaoTermo);
             res.status(200).json(ret);
         } catch (error) {
+            const logText = `Tipo de serviço: Update termo de Usuario, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             res.status(500).json({ error: error });
         }
     }
@@ -169,6 +177,8 @@ class UsuarioController {
             return res.status(200).json({ message: "Termo aceito com sucesso." });
 
         }catch(error){
+            const logText = `Tipo de serviço: Atualização termo de Usuario, Erro: ${JSON.stringify(error)}`;
+            await LogController.writeToTxt(logText);
             res.status(500).json({ error: error })
         }
     }
