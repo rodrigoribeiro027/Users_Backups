@@ -130,8 +130,8 @@ class UsuarioController {
 
     public async atualizarTermoUsuario(req: Request, res: Response){
         try{
-            const { _id } = res.locals.jwtPayload;
-            const usuario = await UsuarioService.findUsuarioById(_id);
+            const { idUsuario } = req.params;
+            const usuario = await UsuarioService.findUsuarioById(idUsuario);
             if(!usuario){
                 return res.status(404).json("Usuario não encontrado.");
             }
@@ -150,12 +150,22 @@ class UsuarioController {
 
             // verifica se o aceite enviado pro usuario é false, caso seja irá excluir o usuario
             if(!aceite){
-                await UsuarioService.deleteUsuario(_id);
+                usuario.TermosUso.push({
+                    termo: termo._id,
+                    aceite: aceite,
+                    dataRegistro: new Date()
+                })
+                await UsuarioService.deleteUsuario(idUsuario);
                 await UsuariosDeleteService.insertDeleteRegister(usuario, "Recusa do termo.");
                 return res.status(500).json("Usuário excluído com sucesso devido à recusa do termo.")
             }
 
-            const ret = await UsuarioService.updateTermoUsuario(usuario, termo);
+            const obj = {
+                termo: termo._id,
+                aceite: aceite
+            }
+
+            const ret = await UsuarioService.updateTermoUsuario(usuario, obj);
             return res.status(200).json({ message: "Termo aceito com sucesso." });
 
         }catch(error){

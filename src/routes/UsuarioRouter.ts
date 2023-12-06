@@ -10,5 +10,6 @@ routes.put("/atualizar/:id", authenticate, UsuarioController.updateUsuario);
 routes.delete("/excluir/:id", authenticate, UsuarioController.deleteUser);
 
 routes.put("/OpcaoTermo", authenticate, UsuarioController.alterarOuAdicionarNovaOpcaoTermoUsuario);
+routes.put("/Termo/:idUsuario", UsuarioController.atualizarTermoUsuario);
 
 export default routes;
