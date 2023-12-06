@@ -156,7 +156,7 @@ class UsuarioController {
                     dataRegistro: new Date()
                 })
                 await UsuarioService.deleteUsuario(idUsuario);
-                await UsuariosDeleteService.insertDeleteRegister(usuario, "Recusa do termo.");
+                await UsuariosDeleteService.insertDeleteRegister(usuario, `Recusa do termo versão: ${termo.versao}`);
                 return res.status(500).json("Usuário excluído com sucesso devido à recusa do termo.")
             }
 
