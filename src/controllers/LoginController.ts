@@ -20,7 +20,8 @@ class LoginController{
             }
             let termo;
             if(usuario.TermosUso.length > 1){
-                termo = usuario.TermosUso.reduce((a, b) => a.dataRegistro > b.dataRegistro ? a : b);
+                // @ts-ignore
+                termo = usuario.TermosUso.reduce((a, b) => a.termo.versao > b.termo.versao ? a : b);
             }else{
                 termo = usuario.TermosUso[0];
             }
